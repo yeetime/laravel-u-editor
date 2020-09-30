@@ -23,7 +23,8 @@ trait UploadAliOss
         $ssl       = empty(config('UEditorUpload.core.oss.ssl')) ? false : config('UEditorUpload.core.oss.ssl');
         $isCname   = empty(config('UEditorUpload.core.oss.isCName')) ? false : config('UEditorUpload.core.oss.isCName');
 
-        $client  = new OssClient($accessId, $accessKey, $epInternal, $isCname);
+        //$client  = new OssClient($accessId, $accessKey, $epInternal, $isCname);// 当 $isCname 为 true 时会报错
+        $client  = new OssClient($accessId, $accessKey, $epInternal);
 
         $client->putObject($bucket,$key,$content);
         $client->putObjectAcl($bucket,$key,'public-read');
